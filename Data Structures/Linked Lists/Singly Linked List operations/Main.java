@@ -1,71 +1,5 @@
-class Main
-{
-	public static void main(String[]args)
-	{
-		LinkedList list1 = new LinkedList();
+// main fuction at end in class Main
 
-		// insert value at end
-		list1.insert(5);
-		list1.insert(4);
-		list1.insert(34);
-		list1.insert(23);
-
-		list1.show();
-
-		System.out.println("deleting at index 5");
-		list1.delete(5);
-		
-		System.out.println("deleting at index 3");
-		list1.delete(3);
-		list1.show();
-
-		System.out.println("deleting at index 0");
-		list1.delete(0);
-		list1.show();
-
-		System.out.println("34 is present : "+list1.search(34));
-		System.out.println("5 is present : "+list1.search(5));
-
-		System.out.println("insert at start value 67");
-		list1.insertAtStart(67);
-		list1.show();
-
-		System.out.println("insert at 0 value 62");
-		list1.insertAt(0,62);
-		list1.show();
-
-		System.out.println("insert at 1 value 223");
-		list1.insertAt(1,223);
-		list1.show();
-
-		System.out.println("insert at 5 value 59");
-		list1.insertAt(5,59);
-		list1.show();
-
-		int length = list1.length();
-		System.out.println("Length : "+length);
-
-		// insert at the end of linked list using insertAt()
-		System.out.println("insert at "+(length+1)+" value 58");
-		list1.insertAt((length+1),58);
-		list1.show();
-
-		length = list1.length();
-		System.out.println("Length : "+length);
-		
-		// inserting at index that does not exist
-		System.out.println("insert at "+(length+3)+" value 58");
-		list1.insertAt((length+3),58);
-		list1.show();
-
-		// inserting at index that does not exist
-		System.out.println("insert at "+(-2)+" value 58");
-		list1.insertAt((-2),58);
-		list1.show();
-
-
-	}
-}
 class Node
 {
 	int data;
@@ -213,17 +147,73 @@ class LinkedList
 
 
 
-/*
-	insert at start:
-		create new node
-		new_node.next = head;
-		head = new_node;
+class Main
+{
+	public static void main(String[]args)
+	{
+		LinkedList list1 = new LinkedList();
 
-	insert at position n:
-		create new node
-		goto position n
-		Node previous;
-		new_node.next = current = head;
-		previous.next = ne				previous = current;
-		w_node
-*/
+		// insert value at end
+		list1.insert(5);
+		list1.insert(4);
+		list1.insert(34);
+		list1.insert(23);
+
+		list1.show();
+
+		// deleting at index that does not exist
+		System.out.println("deleting at index 5");
+		list1.delete(5);
+		
+		System.out.println("deleting at index 3");
+		list1.delete(3);
+		list1.show();
+
+		System.out.println("deleting at index 0");
+		list1.delete(0);
+		list1.show();
+
+		// list1.search(integer value) returns true or false when value is present or not in linked list
+		System.out.println("34 is present : "+list1.search(34));
+		System.out.println("5 is present : "+list1.search(5));
+
+		System.out.println("insert at start value 67");
+		list1.insertAtStart(67);
+		list1.show();
+
+		System.out.println("insert at 0 value 62");
+		list1.insertAt(0,62);
+		list1.show();
+
+		System.out.println("insert at 1 value 223");
+		list1.insertAt(1,223);
+		list1.show();
+
+		System.out.println("insert at 5 value 59");
+		list1.insertAt(5,59);
+		list1.show();
+
+		int length = list1.length();
+		System.out.println("Length : "+length);
+
+		// insert at the end of linked list using insertAt()
+		System.out.println("insert at "+(length+1)+" value 58");
+		list1.insertAt((length+1),58);
+		list1.show();
+
+		length = list1.length();
+		System.out.println("Length : "+length);
+		
+		// inserting at index that does not exist
+		System.out.println("insert at "+(length+3)+" value 58");
+		list1.insertAt((length+3),58);
+		list1.show();
+
+		// inserting at index that does not exist
+		System.out.println("insert at "+(-2)+" value 58");
+		list1.insertAt((-2),58);
+		list1.show();
+
+
+	}
+}
