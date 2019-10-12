@@ -2,43 +2,99 @@ class Main
 {
 	public static void main(String[]args)
 	{
-		LinkedList list1 = new LinkedList(0);
-		list1.insert(1);
-		list1.insert(2);
-		list1.insert(3);
+		LinkedList list1 = new LinkedList();
+
+		// insert value at end
+		list1.insert(5);
 		list1.insert(4);
+		list1.insert(34);
+		list1.insert(23);
+
 		list1.show();
+
+		System.out.println("deleting at index 5");
+		list1.delete(5);
+		
+		System.out.println("deleting at index 3");
+		list1.delete(3);
+		list1.show();
+
+		System.out.println("deleting at index 0");
 		list1.delete(0);
 		list1.show();
-		System.out.println("3"+list1.search(3));
-		System.out.println("5"+list1.search(5));
+
+		System.out.println("34 is present : "+list1.search(34));
+		System.out.println("5 is present : "+list1.search(5));
+
+		System.out.println("insert at start value 67");
+		list1.insertAtStart(67);
+		list1.show();
+
+		System.out.println("insert at 0 value 62");
+		list1.insertAt(0,62);
+		list1.show();
+
+		System.out.println("insert at 1 value 223");
+		list1.insertAt(1,223);
+		list1.show();
+
+		System.out.println("insert at 5 value 59");
+		list1.insertAt(5,59);
+		list1.show();
+
+		int length = list1.length();
+		System.out.println("Length : "+length);
+
+		// insert at the end of linked list using insertAt()
+		System.out.println("insert at "+(length+1)+" value 58");
+		list1.insertAt((length+1),58);
+		list1.show();
+
+		length = list1.length();
+		System.out.println("Length : "+length);
+		
+		// inserting at index that does not exist
+		System.out.println("insert at "+(length+3)+" value 58");
+		list1.insertAt((length+3),58);
+		list1.show();
+
+		// inserting at index that does not exist
+		System.out.println("insert at "+(-2)+" value 58");
+		list1.insertAt((-2),58);
+		list1.show();
+
+
 	}
 }
 class Node
 {
 	int data;
 	Node next;
-	Node(int value)
-	{
-		data = value;
-	}
 }
 class LinkedList
 {
 	Node head;
-	// creating a new linked list with header value in head variable
-	LinkedList(int value)
-	{
-		head = new Node(value);
-	}
 	void insert(int value)
 	{
-		Node pointer = head;
-		while(pointer.next != null)
+		Node new_node = new Node();
+		new_node.data = value;
+		new_node.next = null;
+
+		if(head != null)
 		{
-			pointer = pointer.next;
+			Node pointer = head;
+			
+			while(pointer.next != null)
+			{
+				pointer = pointer.next;
+			}
+
+			pointer.next = new_node;
 		}
-		pointer.next = new Node(value);
+		else
+		{
+			head = new_node;
+		}
 	}
 	void show()
 	{
@@ -49,52 +105,125 @@ class LinkedList
 			pointer = pointer.next;
 		}
 	}
-	void delete(int index)
+	void insertAt(int position,int value)
 	{
+		int length = length();
 		int i=0;
-		boolean deleted = false;
-		// Node previous = head;
-		// Node current = head;
-		// Node next = current.next;
-		
-		// while(current.next != null)
-		// {
-		// 	if(i == index && index > 0)
-		// 	{
-		// 		previous.next = current.next;
-		// 		deleted = true;
-		// 		break;
-		// 	}
-		// 	else if(index == 0)
-		// 	{
-		// 		previous = current.next;
-		// 		deleted = true;
-		// 		break;
-		// 	}
 
-		// 	previous = current;
-		// 	current = current.next;
-		// 	next = current.next;
-		// 	i++;
-		// }
-		// if(deleted)
-		// 	System.out.println("Deleted");
-		// else
-		// 	System.out.println("Not Deleted");
+		Node new_node = new Node();
+		new_node.data = value;
+
+		// if position is greater than length+2 of linked list or position is negative then exit
+		if(position > (length+1) || position < 0)
+		{
+			System.out.println("Cannot insert at position "+position);
+			return;
+		}
+		// if position is 1 greater than lenght of LL then inserting will be done at end
+		else if(position == length+1)
+			insert(value);
+		// if inserting at position 0 i.e, at start then call insertAtStart()
+		else if(position == 0)
+			insertAtStart(value);
+		// if inserting in between
+		else
+		{
+			Node previous = null;
+			Node current = head;
+			while(i < position)
+			{
+				previous = current;
+				current = current.next;
+				i++;
+			}
+			new_node.next = current;
+			previous.next = new_node;
+		}
+
 	}
-	boolean search(int value)
+	void insertAtStart(int value)
+	{
+		Node new_node = new Node();
+		new_node.data = value;
+		new_node.next = head;
+		head = new_node;
+	}
+	int length()
+	{
+		int length = 0;
+		Node pointer = head;
+		while(pointer != null)
+		{
+			pointer = pointer.next;
+			length++;
+		}
+		return length;
+	}
+	boolean search(int element)
 	{
 		Node pointer = head;
-		boolean found = false;
-		while(pointer.next != null)
+		while(pointer != null)
 		{
-			if(pointer.data == value)
+			if(pointer.data == element)
 			{
-				found = true;
-				break;
+				// if element is present then return true for present
+				return true;
 			}
 			pointer = pointer.next;
 		}
-		return found;
+		return false;
+	}
+	void delete(int index)
+	{
+		int length = length();
+
+		Node previous = null;
+		Node current = head;
+		if(index == 0)
+		{
+			head = head.next;
+		}
+		// if index is greater than length of linked list or index is negative then deleting not possible as that index does not exist
+		else if(index > length || index < 0)
+		{
+			System.out.println("Cannot delete element");
+			return;
+		}
+		else
+		{
+			int i=0;
+			// go to the requested index
+			while(i < index)
+			{
+				previous = current;
+				current = current.next;
+				i++;
+			}
+			// instead of pointer of current node, put the pointer of current.next(that is next) node
+			previous.next = current.next;
+		}
+	}
+	// drop complete linked list
+	void drop()
+	{
+		head = null;
 	}
 }
+
+
+
+
+/*
+	insert at start:
+		create new node
+		new_node.next = head;
+		head = new_node;
+
+	insert at position n:
+		create new node
+		goto position n
+		Node previous;
+		new_node.next = current = head;
+		previous.next = ne				previous = current;
+		w_node
+*/
