@@ -214,6 +214,10 @@ class Main
 		list1.insertAt((-2),58);
 		list1.show();
 
+		System.out.println("Dropping list!\nList now:");
+		list1.drop();
+		list1.show();
+
 
 	}
 }
