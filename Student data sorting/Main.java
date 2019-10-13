@@ -8,10 +8,10 @@ class Main
 		Student student[];
 		
 		student = new Student[4];
-		student[0] = new Student("Anmol",16,5,30);
+		student[0] = new Student("Anmol   ",16,5,30);
 		student[1] = new Student("Shivangi",19,20,40);
-		student[2] = new Student("Tushit",29,15,20);
-		student[3] = new Student("Harsh",21,27,35);
+		student[2] = new Student("Tushit  ",29,15,20);
+		student[3] = new Student("Harsh   ",21,27,35);
 
 		SortShow obj = new SortShow();
 
@@ -62,10 +62,10 @@ class SortShow
 {
 	void show(Student student[])
 	{
-		System.out.println("Name\tAge\tHeight\tWeight");
+		System.out.println("Name    \tAge\tHeight\tWeight");
 		for(Student i : student)
 		{
-			System.out.println(i.name+"\t"+i.age+"\t"+i.height+"\t"+i.weight);
+			System.out.println(i.name+"\t"+i.age+"\t   "+i.height+"\t   "+i.weight);
 		}
 	}
 	void sortNameShow(Student student[])
