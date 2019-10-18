@@ -48,13 +48,13 @@ class LinkedList
 		new_node.data = value;
 
 		// if position is greater than length+2 of linked list or position is negative then exit
-		if(position > (length+1) || position < 0)
+		if(position > length || position < 0)
 		{
 			System.out.println("Cannot insert at position "+position);
 			return;
 		}
 		// if position is 1 greater than lenght of LL then inserting will be done at end
-		else if(position == length+1)
+		else if(position == length)
 			insert(value);
 		// if inserting at position 0 i.e, at start then call insertAtStart()
 		else if(position == 0)
@@ -197,8 +197,8 @@ class Main
 		System.out.println("Length : "+length);
 
 		// insert at the end of linked list using insertAt()
-		System.out.println("insert at "+(length+1)+" value 58");
-		list1.insertAt((length+1),58);
+		System.out.println("insert at "+length+" value 58");
+		list1.insertAt(length,58);
 		list1.show();
 
 		length = list1.length();
